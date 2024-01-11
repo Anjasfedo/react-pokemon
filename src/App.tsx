@@ -1,14 +1,13 @@
-import { useState } from 'react'
-
+import { useState, Suspense } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <h1>anjas</h1>
-    </>
-  )
+    <Suspense fallback={<div>Loading . . .</div>}>
+      <div className="App"></div>
+    </Suspense>
+  );
 }
 
-export default App
+export default App;
