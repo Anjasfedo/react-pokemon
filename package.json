@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "^0.0.0-experimental-6639ed3b3-20240111",
-    "react-dom": "^0.0.0-experimental-6639ed3b3-20240111"
+    "react-dom": "^0.0.0-experimental-6639ed3b3-20240111",
+    "react-icons": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
