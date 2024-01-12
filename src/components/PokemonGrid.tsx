@@ -2,18 +2,14 @@ import { use, useState } from "react";
 
 import { PokemonData } from "../../types/Pokemon";
 
+import { fetchData } from "../../lib/api"
+
+import { URL } from "../../lib/constant"
+
 import styles from "./PokemonGrid.module.css";
-
-const fetchData = async (url) => {
-  const res = await fetch(url);
-
-  return res.json();
-};
 
 export const PokemonGrid = ({ handleSelectPokemon }) => {
   const [search, setSearch] = useState("");
-
-  const url = "https://pokeapi.co/api/v2/pokemon/";
 
   let data: PokemonData;
 
@@ -21,7 +17,7 @@ export const PokemonGrid = ({ handleSelectPokemon }) => {
     data = JSON.parse(localStorage.getItem("pokemon-cards"));
     console.log("Fetch From localStorage");
   } else {
-    data = use(fetchData(url));
+    data = use(fetchData(URL));
     localStorage.setItem("pokemon-cards", JSON.stringify(data));
     console.log("Fetch From API");
   }
@@ -43,7 +39,7 @@ export const PokemonGrid = ({ handleSelectPokemon }) => {
           .map((pokemon, index: number) => {
             return (
               <div
-                onClick={handleSelectPokemon(pokemon)}
+                onClick={handleSelectPokemon(pokemon.name)}
                 key={index}
                 className={styles.pokemon}
               >

@@ -7,7 +7,9 @@ function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   const handleSelectPokemon = (pokemon) => {
-    return setSelectedPokemon(pokemon);
+    return () => {
+      setSelectedPokemon(pokemon);
+    };
   };
 
   return (
