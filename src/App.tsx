@@ -1,12 +1,19 @@
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
+import ErrorBoundary from "./ErrorBoundary";
+import { PokemonCard } from "./components/PokemonCard";
+import { PokemonGrid } from "./components/PokemonGrid";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [selectedPokemon, setSelectedPokemon] = useState(false);
 
   return (
-    <Suspense fallback={<div>Loading . . .</div>}>
-      <div className="App"></div>
-    </Suspense>
+    <ErrorBoundary fallback={<div>Error . . .</div>}>
+      <Suspense fallback={<div>Loading . . .</div>}>
+        <div className="App">
+          {selectedPokemon ? <PokemonCard /> : <PokemonGrid />}
+        </div>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
