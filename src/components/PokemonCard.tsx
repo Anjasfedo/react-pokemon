@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export const PokemonCard = () => {
-  return (
-    <div>PokemonCard</div>
-  )
-}
+export const PokemonCard = ({ selectedPokemon, clearHander }) => {
+  return <div>PokemonCard</div>;
+};

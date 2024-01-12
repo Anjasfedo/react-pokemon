@@ -4,13 +4,24 @@ import { PokemonCard } from "./components/PokemonCard";
 import { PokemonGrid } from "./components/PokemonGrid";
 
 function App() {
-  const [selectedPokemon, setSelectedPokemon] = useState(false);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  const handleSelectPokemon = (pokemon) => {
+    return setSelectedPokemon(pokemon);
+  };
 
   return (
     <ErrorBoundary fallback={<div>Error . . .</div>}>
       <Suspense fallback={<div>Loading . . .</div>}>
         <div className="App">
-          {selectedPokemon ? <PokemonCard /> : <PokemonGrid />}
+          {selectedPokemon ? (
+            <PokemonCard
+              selectedPokemon={selectedPokemon}
+              clearHander={() => setSelectedPokemon(null)}
+            />
+          ) : (
+            <PokemonGrid handleSelectPokemon={handleSelectPokemon} />
+          )}
         </div>
       </Suspense>
     </ErrorBoundary>
