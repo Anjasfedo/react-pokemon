@@ -8,18 +8,24 @@ import { URL } from "../../lib/constant";
 
 import { PokemonInfo } from "../../types/PokemonInfo";
 
-export const PokemonCard = ({ selectedPokemon, clearHander }) => {
+export const PokemonCard = ({
+  selectedPokemon,
+  clearHandler,
+}: {
+  selectedPokemon: string;
+  clearHandler: () => void;
+}) => {
   const pokemonURL = URL + selectedPokemon;
 
   const data: PokemonInfo = use(fetchData(pokemonURL));
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <h4>{selectedPokemon}</h4>
-        <div onClick={() => clearHander()}>X</div>
+        <div onClick={() => clearHandler()}>X</div>
       </div>
       <img src={data.sprites.front_default} alt={selectedPokemon} />
       <h5>Stats</h5>

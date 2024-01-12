@@ -1,21 +1,21 @@
-interface Stat {
+export interface Stat {
   name: string;
 }
 
-interface PokemonStats {
+export interface PokemonStats {
   base_stat: number;
   stat: Stat;
 }
 
-interface PokemonSprites {
+export interface PokemonSprites {
   front_default: string;
 }
 
-interface Type {
+export interface Type {
   name: string;
 }
 
-interface PokemonType {
+export interface PokemonType {
   type: Type;
 }
 

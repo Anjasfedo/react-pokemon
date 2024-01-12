@@ -1,12 +1,12 @@
-import { useState, Suspense, useEffect } from "react";
+import { useState, Suspense } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonGrid } from "./components/PokemonGrid";
 
 function App() {
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
 
-  const handleSelectPokemon = (pokemon) => {
+  const handleSelectPokemon = (pokemon: string): (() => void) => {
     return () => {
       setSelectedPokemon(pokemon);
     };
@@ -19,7 +19,7 @@ function App() {
           {selectedPokemon ? (
             <PokemonCard
               selectedPokemon={selectedPokemon}
-              clearHander={() => setSelectedPokemon(null)}
+              clearHandler={() => setSelectedPokemon(null)}
             />
           ) : (
             <PokemonGrid handleSelectPokemon={handleSelectPokemon} />

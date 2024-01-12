@@ -8,7 +8,7 @@ import { URL } from "../../lib/constant"
 
 import styles from "./PokemonGrid.module.css";
 
-export const PokemonGrid = ({ handleSelectPokemon }) => {
+export const PokemonGrid = ({ handleSelectPokemon }: {handleSelectPokemon: (pokemon: string) => void }) => {
   const [search, setSearch] = useState("");
 
   let data: PokemonData;
