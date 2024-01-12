@@ -6,10 +6,14 @@ import { fetchData } from "../../lib/api";
 
 import { URL } from "../../lib/constant";
 
+import { PokemonInfo } from "../../types/PokemonInfo";
+
 export const PokemonCard = ({ selectedPokemon, clearHander }) => {
   const pokemonURL = URL + selectedPokemon;
 
-  const data = use(fetchData(pokemonURL));
+  const data: PokemonInfo = use(fetchData(pokemonURL));
+
+  console.log(data)
 
   return (
     <div className={styles.card}>
