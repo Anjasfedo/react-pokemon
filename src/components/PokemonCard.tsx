@@ -1,8 +1,6 @@
 // @ts-ignore
 import { use } from "react";
 
-import styles from "./PokemonCard.module.css";
-
 import { fetchData } from "../../lib/api";
 
 import { URL } from "../../lib/constant";
@@ -21,8 +19,8 @@ export const PokemonCard = ({
   const data: PokemonInfo = use(fetchData(pokemonURL));
 
   return (
-    <div className={styles.card}>
-      <div className={styles.header}>
+    <div>
+      <div>
         <h4>{selectedPokemon}</h4>
         <div onClick={() => clearHandler()}>X</div>
       </div>

@@ -7,8 +7,6 @@ import { fetchData } from "../../lib/api";
 
 import { URL } from "../../lib/constant";
 
-import styles from "./PokemonGrid.module.css";
-
 export const PokemonGrid = ({
   handleSelectPokemon,
 }: {
@@ -29,9 +27,9 @@ export const PokemonGrid = ({
   }
 
   return (
-    <div className={styles.pokemonGrid}>
-      <h1 className={styles.header}>Pokemon</h1>
-      <div className={styles.listContainer}>
+    <div>
+      <h1 className="underline">Pokemon</h1>
+      <div>
         <input
           type="text"
           placeholder="Search Pokemon"
@@ -47,7 +45,6 @@ export const PokemonGrid = ({
               <button
                 onClick={() => handleSelectPokemon(pokemon.name)}
                 key={index}
-                className={styles.pokemon}
               >
                 {pokemon.name}
               </button>
