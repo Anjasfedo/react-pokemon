@@ -27,15 +27,18 @@ export const PokemonGrid = ({
   }
 
   return (
-    <div>
-      <h1 className="underline">Pokemon</h1>
-      <div>
+    <div className="px-20 text-center pt-3 lg:px-96">
+      <h1 className="font-bold text-5xl text-violet-400 py-3">Pokemon</h1>
+      <div className="py-1 lg:py-8">
         <input
           type="text"
           placeholder="Search Pokemon"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="transition-all duration-500 border-2 rounded-md p-1 text-slate-950 font-semibold border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
         />
+      </div>
+      <div className="flex flex-wrap gap-3 py-5 lg:py-8">
         {data.results
           .filter((val) => {
             return val.name.includes(search);
@@ -45,6 +48,7 @@ export const PokemonGrid = ({
               <button
                 onClick={() => handleSelectPokemon(pokemon.name)}
                 key={index}
+                className="bg-violet-400 grow rounded-md p-1 hover:bg-violet-600 transition-all duration-500"
               >
                 {pokemon.name}
               </button>
