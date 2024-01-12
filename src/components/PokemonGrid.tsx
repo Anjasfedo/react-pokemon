@@ -1,14 +1,26 @@
 import { use } from "react";
 
-const fetchData = async (url: string) => {
+import styles from "./PokemonGrid.module.css"
+
+const fetchData = async (url) => {
   const res = await fetch(url);
 
   return res.json();
 };
 
 export const PokemonGrid = () => {
-  const url = "https://jsonplaceholder.typicode.com/todos/1";
-  const data = use(fetchData(url));
+  const url = "https://pokeapi.co/api/v2/pokemon/";
 
-  return <div>{data.title}</div>;
+  let data;
+
+  if (localStorage.getItem("pokemon-cards")) {
+    data = JSON.parse(localStorage.getItem("pokemon-cards"));
+    console.log("Fetch From localStorage");
+  } else {
+    data = use(fetchData(url));
+    localStorage.setItem("pokemon-cards", JSON.stringify(data));
+    console.log("Fetch From API");
+  }
+
+  return <div className={styles.pokemonGrid}>Anjas</div>;
 };
