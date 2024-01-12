@@ -1,3 +1,4 @@
+// @ts-ignore
 import { use } from "react";
 
 import styles from "./PokemonCard.module.css";
@@ -6,16 +7,24 @@ import { fetchData } from "../../lib/api";
 
 import { URL } from "../../lib/constant";
 
-export const PokemonCard = ({ selectedPokemon, clearHander }) => {
+import { PokemonInfo } from "../../types/PokemonInfo";
+
+export const PokemonCard = ({
+  selectedPokemon,
+  clearHandler,
+}: {
+  selectedPokemon: string;
+  clearHandler: () => void;
+}) => {
   const pokemonURL = URL + selectedPokemon;
 
-  const data = use(fetchData(pokemonURL));
+  const data: PokemonInfo = use(fetchData(pokemonURL));
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <h4>{selectedPokemon}</h4>
-        <div onClick={() => clearHander()}>X</div>
+        <div onClick={() => clearHandler()}>X</div>
       </div>
       <img src={data.sprites.front_default} alt={selectedPokemon} />
       <h5>Stats</h5>
