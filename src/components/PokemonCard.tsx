@@ -1,3 +1,4 @@
+// @ts-ignore
 import { use } from "react";
 
 import styles from "./PokemonCard.module.css";
@@ -18,8 +19,6 @@ export const PokemonCard = ({
   const pokemonURL = URL + selectedPokemon;
 
   const data: PokemonInfo = use(fetchData(pokemonURL));
-
-  console.log(data);
 
   return (
     <div className={styles.card}>
