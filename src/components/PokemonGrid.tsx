@@ -1,26 +1,53 @@
-import { use } from "react";
+import { use, useState } from "react";
 
-import styles from "./PokemonGrid.module.css"
+import { PokemonData } from "../../types/Pokemon";
 
-const fetchData = async (url) => {
-  const res = await fetch(url);
+import { fetchData } from "../../lib/api"
 
-  return res.json();
-};
+import { URL } from "../../lib/constant"
 
-export const PokemonGrid = () => {
-  const url = "https://pokeapi.co/api/v2/pokemon/";
+import styles from "./PokemonGrid.module.css";
 
-  let data;
+export const PokemonGrid = ({ handleSelectPokemon }) => {
+  const [search, setSearch] = useState("");
+
+  let data: PokemonData;
 
   if (localStorage.getItem("pokemon-cards")) {
     data = JSON.parse(localStorage.getItem("pokemon-cards"));
     console.log("Fetch From localStorage");
   } else {
-    data = use(fetchData(url));
+    data = use(fetchData(URL));
     localStorage.setItem("pokemon-cards", JSON.stringify(data));
     console.log("Fetch From API");
   }
 
-  return <div className={styles.pokemonGrid}>Anjas</div>;
+  return (
+    <div className={styles.pokemonGrid}>
+      <h1 className={styles.header}>Pokemon</h1>
+      <div className={styles.listContainer}>
+        <input
+          type="text"
+          placeholder="Search Pokemon"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {data.results
+          .filter((val) => {
+            return val.name.includes(search);
+          })
+          .map((pokemon, index: number) => {
+            return (
+              <div
+                onClick={handleSelectPokemon(pokemon.name)}
+                key={index}
+                className={styles.pokemon}
+              >
+                {pokemon.name}
+              </div>
+            );
+          })}
+      </div>
+    </div>
+  );
 };

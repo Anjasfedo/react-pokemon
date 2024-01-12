@@ -6,3 +6,22 @@
     width: 100%;
     max-width: 800px;
 }
+
+.header {
+    text-align: center;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pokemon {
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.pokemon:hover {
+    padding-left: 4px;
+}

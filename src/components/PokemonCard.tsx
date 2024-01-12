@@ -1,7 +1,43 @@
-import React from 'react'
+import { use } from "react";
 
-export const PokemonCard = () => {
+import styles from "./PokemonCard.module.css";
+
+import { fetchData } from "../../lib/api";
+
+import { URL } from "../../lib/constant";
+
+export const PokemonCard = ({ selectedPokemon, clearHander }) => {
+  const pokemonURL = URL + selectedPokemon;
+
+  const data = use(fetchData(pokemonURL));
+
   return (
-    <div>PokemonCard</div>
-  )
-}
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <h4>{selectedPokemon}</h4>
+        <div onClick={() => clearHander()}>X</div>
+      </div>
+      <img src={data.sprites.front_default} alt={selectedPokemon} />
+      <h5>Stats</h5>
+      {data.stats.map((stat, index) => {
+        return (
+          <div key={index}>
+            <p>
+              <b>{stat.stat.name}:</b> {stat.base_stat}
+            </p>
+          </div>
+        );
+      })}
+      <h3>Types</h3>
+      {data.types.map((type, index) => {
+        return (
+          <div key={index}>
+            <p>
+              <b>{type.type.name}</b>
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
